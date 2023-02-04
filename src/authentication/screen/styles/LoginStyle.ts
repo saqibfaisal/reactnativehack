@@ -27,12 +27,13 @@ shadow: {
 btn: {
     backgroundColor: '#6c757d',
     // width: '100%',
-    width: wp('100%'),
+    width: wp('80%'),
     borderRadius: 20,
     padding: 12,
     // paddingHorizontal: 10,
     marginVertical: 15,
     alignItems: 'center',
+    
 },
 label: {
     fontSize: 15,

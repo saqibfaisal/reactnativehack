@@ -3,6 +3,7 @@ import React from "react";
 import Login from '../authentication/screen/Login';
 import Signup from '../authentication/screen/singup';
 import { StyleSheet } from 'react-native'
+import Welcome from '../authentication/screen/Welcome';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -20,6 +21,8 @@ export default function MyStack() {
       //   };
       // }}
     >
+
+      <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} 
       // options={{

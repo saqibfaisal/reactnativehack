@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import { LoginStyle } from "./styles/LoginStyle"
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Button from '../../component/button';
+import BgImage from "../../assets/backgroundImage.png"
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

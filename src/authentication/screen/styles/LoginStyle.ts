@@ -1,44 +1,79 @@
 import { StyleSheet } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 export const LoginStyle = StyleSheet.create({
-  heading: {
-    backgroundColor: 'darkblue',
-    fontSize: 30,
-    padding: 10,
-    textAlign: 'center',
-    fontWeight: '600',
-    color: 'white',
-},
-txtField: {
-    padding: 10,
-    paddingHorizontal: 20,
-    fontSize: 15,
-},
-shadow: {
-    width: '100%',
-    elevation: 12,
-    shadowColor: 'grey',
-    overflow: 'hidden',
-    backgroundColor: 'white',
-    marginBottom: 15,
-    borderRadius: 12,
-    marginTop:10
-},
-btn: {
-    backgroundColor: '#6c757d',
-    // width: '100%',
-    width: wp('80%'),
-    borderRadius: 20,
-    padding: 12,
-    // paddingHorizontal: 10,
-    marginVertical: 15,
-    alignItems: 'center',
-    
-},
-label: {
-    fontSize: 15,
-    marginTop: 20,
-    marginBottom: 8,
-    fontWeight: '600',
-}
+    LoginText: {
+        fontFamily: 'Philosopher',
+        fontSize: 36,
+        fontWeight: "700",
+        fontStyle: "normal",
+        lineHeight: 40,
+        color: "#0D986A",
+        // marginTop:19
+    },
+    LoginText2: {
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "400",
+        fontSize: 14,
+        lineHeight: 21,
+        color: "#0D986A",
+        marginTop: 6
+    },
+    Email: {
+        fontFamily: 'Inter',
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 16,
+        lineHeight: 19,
+        color: " rgba(0, 74, 97, 0.4)"
+    },
+    passwordText: {
+        fontFamily: 'Inter',
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 16,
+        lineHeight: 19,
+        color: " rgba(0, 74, 97, 0.4)",
+        marginTop: 30
+    },
+    EmailInput: {
+        width: wp("70%")
+    },
+    password: {
+        flexDirection: "row",
+        alignItems: "center",
+        borderWidth: 1,
+        backgroundColor: "#FCFCFC",
+        borderColor: "#E6E8EB",
+        borderRadius: 4,
+        paddingRight: 16,
+        paddingLeft: 16,
+        marginTop: 5,
+    },
+    ForgetPasssword: {
+        textAlign: "right",
+        color: "#004A61",
+        textDecorationLine: "underline",
+        fontFamily: 'Inter',
+        fontStyle: "normal",
+        fontSize: 14,
+        fontWeight: "400",
+        lineHeight: 17,
+    },
+    BtnText: {
+        color: "#ffffff",
+        fontFamily: 'Inter',
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: 18,
+        lineHeight: 22,
+    },
+    btn: {
+        backgroundColor: "#0D986A",
+        alignItems: "center",
+        borderRadius: 25,
+        paddingTop: 16,
+        paddingBottom: 16,
+        marginTop:43,
+    },
 });

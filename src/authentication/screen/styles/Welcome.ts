@@ -20,7 +20,7 @@ export const Welcome = StyleSheet.create({
     mainView:{
         marginLeft:24,
         marginRight:24,
-        marginTop:0
+
     },
     Texts:{
         fontFamily:'Inter',

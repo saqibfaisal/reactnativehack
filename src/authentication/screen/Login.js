@@ -3,7 +3,10 @@ import { Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity
 import { LoginStyle } from "./styles/LoginStyle"
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Button from '../../component/button';
-import BgImage from "../../assets/backgroundImage.png"
+import Back from "../../assets/Back.png"
+import Logo2 from "../../assets/Logo2.png"
+import Passowrdsssss from "../../assets/passowrdsssss.png"
+import Userrsss from "../../assets/Userrsss.png"
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -69,33 +72,34 @@ export default function Login({ navigation }) {
         }
     }
     return (
-        <View style={{ backgroundColor: '#6c757d' }}>
-
-            <Text style={{
-                fontSize: 40, fontWeight: 'bold', color: 'white', textAlign: 'center', alignItems: "center", justifyContent: "center", marginTop: 80,
-            }}>LOGIN</Text>
-
-            <View style={{ backgroundColor: 'white', marginTop: 90, borderTopLeftRadius: 50, borderTopEndRadius: 50, paddingHorizontal: '10%', height: '80%' }}>
-                <View style={{ paddingTop: 90, }}>
-                    <View style={LoginStyle.shadow}>
-                        <TextInput style={LoginStyle.txtField} textContentType={'emailAddress'} placeholder='Enter the Email' value={email} onChangeText={(e) => setEmail(e)} />
-                    </View>
-                    <View style={LoginStyle.shadow}>
-                        <TextInput style={LoginStyle.txtField} textContentType={'password'} placeholder='Enter the Password' value={password} onChangeText={(e) => setPassword(e)} />
-                    </View>
-
-                    <Button style={LoginStyle.btn} style2={{ color: 'white', fontSize: 17, }} text={"Login"} onPress={() => Login()} />
-                    {/* <TouchableOpacity style={LoginStyle.btn} onPress={() => Login()}>
-                        <Text style={{ color: 'white', fontSize: 17, }}>Login </Text>
-                    </TouchableOpacity> */}
-
-                    <TouchableOpacity onPress={() => { navigation.navigate("Signup") }} style={{ marginVertical: 15, flexDirection: 'row', marginTop: 20, alignSelf: 'center' }}>
-                        <Text>Don't Have an Account ? </Text>
-                        <Text style={{ borderBottomColor: 'gray', borderBottomWidth: 1, }}>Sign Up</Text>
-                    </TouchableOpacity>
+        <View style={{ marginLeft: 24, marginTop: 24, marginRight: 24 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image source={Back} />
+            </TouchableOpacity>
+            <Image source={Logo2} style={{ width: "77%", height: "7%", marginTop: 24 }} />
+            <View style={{ marginTop: 19 }}>
+                <Text style={LoginStyle.LoginText}>Login</Text>
+                <Text style={LoginStyle.LoginText2}>Masukan NISN dan password untuk
+                    memulai belajar sekarang</Text>
+            </View>
+            <View style={{ marginTop: 47 }}>
+                <Text style={LoginStyle.Email}>Username/ Email</Text>
+                <View style={LoginStyle.password}>
+                    <Image source={Userrsss} style={{ marginRight: 5 }} />
+                    <TextInput placeholder='Username/ Email' style={LoginStyle.EmailInput} />
+                </View>
+                <Text style={LoginStyle.passwordText}>Password</Text>
+                <View style={LoginStyle.password}>
+                    <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
+                    <TextInput placeholder='Password' pl style={LoginStyle.EmailInput} />
+                </View>
+                <View>
+                    <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>
                 </View>
             </View>
+            <View>
+                <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"Login"} onPress={() => Login()} />
+            </View>
         </View>
-
     )
 }

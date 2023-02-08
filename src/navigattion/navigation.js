@@ -5,7 +5,9 @@ import Signup from '../authentication/screen/singup';
 import { StyleSheet } from 'react-native'
 import Welcome from '../authentication/screen/Welcome';
 import Home from "../assets/Home.png"
-// import HomeScreen from '../authenticated/HomeScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from '../authenticated/HomeScreen';
+import { Image } from 'react-native';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -26,17 +28,17 @@ export default function MyStack() {
 
       {/* <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} /> */}
       {/* <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} /> */}
-      <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
-      // options={{
+      {/* <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
+      /> */}
+      <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }} />
+      {/* // options={{
       //   transitionSpec: {
       //     open: config,
       //     close: closeConfig,
       //   },
       //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       //   headerShown: false,
-      // }}
-      />
-      {/* <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }}  */}
+      // }} */}
     </Stack.Navigator>
   );
 }

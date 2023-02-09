@@ -12,6 +12,7 @@ import Foot from "../assets/foot.png"
 import Varse from "../assets/varse.png"
 import Heart from "../assets/Heart.png"
 import Face from "../assets/face.png"
+import Vector from "../assets/Vector.png"
 import { HomeScreenStyle } from "./Style/HomeScreenStyle";
 function HomeScreen() {
     const names = [
@@ -93,52 +94,31 @@ function HomeScreen() {
             <ScrollView >
 
                 <View style-={{ width: "100%", height: "100%" }}>
-                    <Image source={bannerbg} style={{ position: "absolute"}} />
-                    <View style={{flexDirection:"row",height:"100%"}}>
+                    <ImageBackground source={bannerbg} style={{ width: "90%", height: "90%" }}>
+                        <ImageBackground source={Vector} >
+                            <View style={{ flexDirection: "row", height: "100%", marginBottom: 30 }}>
 
-                        <View style={{ marginTop: 24, marginLeft: 24}}>
+                                <View style={{ marginTop: 24, marginLeft: 24 }}>
 
-                            <View style={{ flexDirection: "row" }}>
-                                <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
-                                    <Text style={HomeScreenStyle.Name}>Air Purifier</Text>
-                                    <Image source={Foot} style={{ marginLeft: 27 }} />
+                                    <View style={{ flexDirection: "row" }}>
+                                        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
+                                            <Text style={HomeScreenStyle.Name}>Air Purifier</Text>
+                                            <Image source={Foot} style={{ marginLeft: 27 }} />
+                                        </View>
+                                    </View>
+                                    <View>
+                                        <Text style={HomeScreenStyle.Name2}>Peperomia</Text>
+                                    </View>
+                                    <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 24, marginTop: 24 }}>
+                                        <Text style={HomeScreenStyle.Price}>$400</Text>
+                                        <Image source={Heart} style={{ marginRight: 18 }} />
+                                        <Image source={Face} />
+                                    </View>
                                 </View>
+                                <Image source={Varse} style={{ width: "35%", height: "65%", marginLeft: 40, marginBottom: 30 }} />
                             </View>
-                            <View>
-                                <Text style={HomeScreenStyle.Name2}>Peperomia</Text>
-                            </View>
-                            <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 24, marginTop: 24 }}>
-                                <Text style={HomeScreenStyle.Price}>$400</Text>
-                                <Image source={Heart} style={{ marginRight: 18 }} />
-                                <Image source={Face} />
-                            </View>
-                        </View>
-                        <Image source={Varse} style={{ width: "35%", height: "44%", marginLeft:40,marginBottom:30}} />
-                    </View>
-                </View>
-                <View style-={{ width: "100%", height: "100%" }}>
-                    <Image source={bannerbg} style={{ position: "absolute"}} />
-                    <View style={{flexDirection:"row",height:"100%"}}>
-
-                        <View style={{ marginTop: 24, marginLeft: 24}}>
-
-                            <View style={{ flexDirection: "row" }}>
-                                <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
-                                    <Text style={HomeScreenStyle.Name}>Air Purifier</Text>
-                                    <Image source={Foot} style={{ marginLeft: 27 }} />
-                                </View>
-                            </View>
-                            <View>
-                                <Text style={HomeScreenStyle.Name2}>Peperomia</Text>
-                            </View>
-                            <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 24, marginTop: 24 }}>
-                                <Text style={HomeScreenStyle.Price}>$400</Text>
-                                <Image source={Heart} style={{ marginRight: 18 }} />
-                                <Image source={Face} />
-                            </View>
-                        </View>
-                        <Image source={Varse} style={{ width: "35%", height: "90%", marginLeft:40,marginBottom:30}} />
-                    </View>
+                        </ImageBackground>
+                    </ImageBackground>
                 </View>
             </ScrollView>
             {/* )

@@ -8,6 +8,8 @@ import Home from "../assets/Home.png"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../authenticated/HomeScreen';
 import { Image } from 'react-native';
+import favoritess from "../assets/favoritess.png";
+import Favorite from '../authenticated/Fovarite';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -31,6 +33,7 @@ export default function MyStack() {
       {/* <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
       /> */}
       <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Favorite" component={TabNavigator} options={{ headerShown: false }} />
       {/* // options={{
       //   transitionSpec: {
       //     open: config,
@@ -53,6 +56,22 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={Home} />
+              {/* <Icon
+                    name={focused ? 'restaurant-menu' : 'restaurant'}
+                    size={25}
+                    color={focused ? '#FA4A0C' : 'black'}
+                  /> */}
+            </>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorite"
+        component={Favorite}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <>
+              <Image source={favoritess} />
               {/* <Icon
                     name={focused ? 'restaurant-menu' : 'restaurant'}
                     size={25}

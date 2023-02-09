@@ -45,9 +45,7 @@ function HomeScreen() {
         // <ScrollView style={{height:"100%"}}>
         <View style={{ marginLeft: 15, marginRight: 15, marginTop: 20 }}>
             <View style={HomeScreenStyle.MainContainer}>
-                {/* <View style={{ width: "70%", height: "70%" }}> */}
                 <Image source={Logo2} style={{ width: "60%", height: "100%" }} />
-                {/* </View> */}
                 <View style={HomeScreenStyle.SearchAndMenu}>
                     <Image source={Union} style={{ marginRight: 30 }} />
                     <TouchableOpacity>

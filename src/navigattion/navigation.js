@@ -9,7 +9,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../authenticated/HomeScreen';
 import { Image } from 'react-native';
 import favoritess from "../assets/favoritess.png";
+import WhiteList from "../assets/WhiteList.png";
 import Favorite from '../authenticated/Fovarite';
+import Checkout from '../authenticated/Checkout';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -34,6 +36,7 @@ export default function MyStack() {
       /> */}
       <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Favorite" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Checkout" component={TabNavigator} options={{ headerShown: false }} />
       {/* // options={{
       //   transitionSpec: {
       //     open: config,
@@ -81,28 +84,22 @@ function TabNavigator() {
           ),
         }}
       />
+      <Tab.Screen
+        name="Checkout"
+        component={Checkout}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <>
+              <Image source={WhiteList} />
+              {/* <Icon
+                    name={focused ? 'restaurant-menu' : 'restaurant'}
+                    size={25}
+                    color={focused ? '#FA4A0C' : 'black'}
+                  /> */}
+            </>
+          ),
+        }}
+      />
     </Tab.Navigator>
   )
 }
-// const styles = StyleSheet.create({
-
-// const config = {
-//   animation: 'spring',
-//   config: {
-//     stiffness: 1000,
-//     damping: 50,
-//     mass: 1,
-//     overshootClamping: false,
-//     restDisplacementThreshold: 0.01,
-//     restSpeedThreshold: 0.01,
-//   },
-// };
-
-// const closeConfig = {
-//   animation: 'timing',
-//   config: {
-//     duration: 2,
-//     // easing: Easing.linear,
-//   },
-// };
-// })

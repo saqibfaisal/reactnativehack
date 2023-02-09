@@ -103,7 +103,70 @@ export const FavoriteStyle = StyleSheet.create({
         fontWeight: "400",
         fontSize: 15,
         lineHeight: 25,
-        color:"#002140", 
+        color: "#002140",
+        elevation: 0.7
+    },
+    Similar: {
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: 14,
+        lineHeight: 21,
+        letterSpacing: 0.02,
+        color: "#002140",
+    },
+    Air: {
+        // position: "absolute",
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontsize: 14,
+        lineheight: 21,
+        color: "#002140",
+        width: 50
+    },
+    Peperomia: {
+        fontFamily: 'Philosopher',
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontsize: 20,
+        lineheight: 21,
+        color: "#002140",
+    },
+    explain: {
+        fontFamily: 'Philosopher',
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: 20,
+        // marginTop: 30,
+        color: "#002140"
+    },
+    Para:{
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 14,
+        marginTop: 21,
+        color: "#002140",
         elevation:0.7
     },
+    scanView:{
+        marginTop:31
+        ,borderWidth:1,
+        borderColor:"#0D986A",
+        borderRadius:4,
+        justifyContent:"center",
+        alignItems:"center",
+        paddingBottom:11
+        ,paddingTop:11
+    },
+    Scan:{
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: 13,
+        // marginTop: 20,
+        color: "#0D986A",
+        
+    }
 });

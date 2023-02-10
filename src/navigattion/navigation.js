@@ -10,41 +10,27 @@ import HomeScreen from '../authenticated/HomeScreen';
 import { Image } from 'react-native';
 import favoritess from "../assets/favoritess.png";
 import WhiteList from "../assets/WhiteList.png";
+import man from "../assets/man.png";
 import Favorite from '../authenticated/Fovarite';
 import Checkout from '../authenticated/Checkout';
+import Menu from '../authenticated/Menu';
+import OrderDone from '../authenticated/OrderDone';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
   return (
     <Stack.Navigator
-    // screenOptions={({ navigation }) => {
-    //   return {
-    //     // gestureEnabled: true,
-    //     // TransitionSpecs: {duration: 500},
-    //     detachPreviousScreen: !navigation.isFocused(),
-    //     headerShown: false,
-    //     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-    //     animation: Platform.OS == 'ios' ? 'default' : 'slide_from_right',
-    //     onTransitionStart: () => Keyboard.dismiss(),
-    //   };
-    // }}
     >
 
-      {/* <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
-      /> */}
+      <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
+      />
       <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Favorite" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Checkout" component={TabNavigator} options={{ headerShown: false }} />
-      {/* // options={{
-      //   transitionSpec: {
-      //     open: config,
-      //     close: closeConfig,
-      //   },
-      //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      //   headerShown: false,
-      // }} */}
+      <Stack.Screen name="Menu" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Order" component={OrderDone} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -91,6 +77,22 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={WhiteList} />
+              {/* <Icon
+                    name={focused ? 'restaurant-menu' : 'restaurant'}
+                    size={25}
+                    color={focused ? '#FA4A0C' : 'black'}
+                  /> */}
+            </>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Menu"
+        component={Menu}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <>
+              <Image source={man} />
               {/* <Icon
                     name={focused ? 'restaurant-menu' : 'restaurant'}
                     size={25}

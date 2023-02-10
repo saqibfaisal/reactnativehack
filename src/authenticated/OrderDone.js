@@ -3,11 +3,13 @@ import { OrderDoneStyle } from "./Style/OrderDoneStyle"
 import Back from "../assets/Back.png";
 import OrderDones from "../assets/OrderDones.png";
 import OrderDone2 from "../assets/OrderDone2.png";
-function OrderDone() {
+function OrderDone({navigation}) {
     return (
         <View style={{ marginTop: 24 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Image source={Back} />
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                    <Image source={Back} />
+                </TouchableOpacity>
                 <Image source={OrderDones} />
             </View>
             <View>

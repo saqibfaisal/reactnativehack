@@ -11,10 +11,10 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let Login = () => {
+        // console.log(email,"email");
+        // console.log(password,"password");
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-        // if (email !== '' && password !== '') {
         if (email == "" || password == "") {
-            // ToastAndroid.show("", 2000);
             showMessage({
                 message: 'Please Fill The Input Field',
                 type: 'Danger',
@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
         }
         else if (email == email) {
 
-            if (reg.test(email) === false) {
+            if (reg.test(email?.toLowerCase()) === false) {
                 // return()
                 showMessage({
                     message: 'Email is Not Valid',
@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
                 return <FlashMessage />
             }
             let data = {
-                "email": email.toLowerCase(),
+                "email": email?.toLowerCase(),
                 "password": password,
             }
             const myHeaders = new Headers();
@@ -50,7 +50,7 @@ export default function Login({ navigation }) {
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("http://192.168.18.217:5000/api/login", requestOptions)
+            fetch("http://192.168.3.109:5000/api/login", requestOptions)
                 .then(response => response.text())
                 .then(result => {
                     setEmail("");
@@ -62,6 +62,7 @@ export default function Login({ navigation }) {
                         duration: 2000,
                         autoHide: true,
                     });
+                    navigation.navigate("HomeScreen")
                     return <FlashMessage />
                 })
                 .catch(error => {
@@ -86,16 +87,16 @@ export default function Login({ navigation }) {
                 <Text style={LoginStyle.Email}>Username/ Email</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Userrsss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Username/ Email' style={LoginStyle.EmailInput} />
+                    <TextInput onChangeText={(e) => setEmail(e)} value={email} placeholder='Username/ Email' style={LoginStyle.EmailInput} />
                 </View>
                 <Text style={LoginStyle.passwordText}>Password</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Password' style={LoginStyle.EmailInput} />
+                    <TextInput placeholder='Password' onChangeText={(e) => setPassword(e)} value={password} style={LoginStyle.EmailInput} />
                 </View>
-                <View>
-                    <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>
-                </View>
+                <TouchableOpacity onPress={()=>navigation.navigate("Signup")}>
+                    <Text style={LoginStyle.ForgetPasssword}>SingUP</Text>
+                </TouchableOpacity>
             </View>
             <View>
                 <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"Login"} onPress={() => Login()} />

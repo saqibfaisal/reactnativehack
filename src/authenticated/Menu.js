@@ -8,14 +8,14 @@ import communit from "../assets/communit.png"
 import TrackOrder from "../assets/TrackOrder.png"
 import myAccount from "../assets/myAccount.png"
 import { MenuStyle } from "./Style/MenuStyle"
-function Menu() {
+function Menu({navigation}) {
     return (
         <ImageBackground source={Greenbg}>
             <ImageBackground source={meunbg}>
                 <View style={{ marginTop: 38.96, marginRight: 36 }}>
-                    <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
+                    <TouchableOpacity onPress={()=>navigation.goBack()} style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
                         <Image source={cancel} />
-                    </View>
+                    </TouchableOpacity>
                     <View style={{ justifyContent: "flex-start", alignItems: "center", marginTop: 25 }}>
                         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                             <Image source={shop} />

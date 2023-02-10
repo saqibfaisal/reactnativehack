@@ -28,7 +28,7 @@ import AIScan from "../assets/AIScan.png"
 import footer from "../assets/footer.png"
 import footer2 from "../assets/footer2.png"
 import footer3 from "../assets/footer3.png"
-function Favorite() {
+function Favorite({ navigation }) {
     const Images = [
         {
             Image: Vedio
@@ -72,7 +72,7 @@ function Favorite() {
                                 <Image source={Logo2} style={{ width: "55%", height: "120%" }} />
                                 <View style={FavoriteStyle.SearchAndMenu}>
                                     <Image source={Search} style={{ marginRight: 30 }} />
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
                                         <Image source={Menu} />
                                     </TouchableOpacity>
                                 </View>
@@ -186,20 +186,16 @@ function Favorite() {
                     </ImageBackground>
                 </View>
             </ScrollView>
-            <View style={{ position: "absolute", bottom: 0 }}>
+            <TouchableOpacity onPress={()=>navigation.navigate("Checkout")} style={{ position: "absolute", bottom: 0 }}>
                 <Image source={footer} resizeMode="cover" />
                 <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
-                    <View style={{ flexDirection: "row" ,alignItems:"center"}}>
-                        {/* <ImageBackground source={footer2}> */}
-
-                            <Image source={footer3} />
-                        {/* </ImageBackground> */}
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <Image source={footer3} />
                         <Text style={FavoriteStyle.checkout}>View 3 items</Text>
                     </View>
                     <Text style={FavoriteStyle.checkouts}>$1000</Text>
                 </View>
-                {/* </ImageBackground> */}
-            </View>
+            </TouchableOpacity>
         </View>
     )
 }

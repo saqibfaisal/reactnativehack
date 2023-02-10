@@ -48,7 +48,7 @@ export default function Signup({ navigation }) {
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("http://192.168.18.217:5000/api/singup", requestOptions)
+            fetch("http://192.168.3.109:5000/api/singup", requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     // ToastAndroid.show("user successfully signup", 2000);
@@ -61,6 +61,7 @@ export default function Signup({ navigation }) {
                         duration: 2000,
                         autoHide: true,
                     });
+                    navigation.navigate("HomeScreen")
                     return <FlashMessage />
 
 
@@ -88,55 +89,20 @@ export default function Signup({ navigation }) {
                 <Text style={LoginStyle.Email}>Username/ Email</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Userrsss} style={{ marginRight: 5 }} />
-                    <TextInput onChange={(e)=>setEmail(e)}value={email} placeholder='Email' style={LoginStyle.EmailInput} />
+                    <TextInput onChangeText={(e)=>setEmail(e)}value={email} placeholder='Email' style={LoginStyle.EmailInput} />
                 </View>
                 <Text style={LoginStyle.passwordText}>Password</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Password' onChange={(e)=>setPassword(e)}value={password} style={LoginStyle.EmailInput} />
+                    <TextInput placeholder='Password' onChangeText={(e)=>setPassword(e)}value={password} style={LoginStyle.EmailInput} />
                 </View>
                 <View>
                     <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>
                 </View>
             </View>
             <View>
-                <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"SignUp"} onPress={() => Login()} />
+                <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"SignUp"} onPress={() => Signup()} />
             </View>
         </View>
-        // <View style={{ backgroundColor: '#6c757d' }}>
-        //     <Text style={{
-        //         fontSize: 40, fontWeight: 'bold', color: 'white', textAlign: 'center', alignItems: "center", justifyContent: "center", marginTop: 80,
-        //     }}>SignUp</Text>
-
-        //     <View style={{ backgroundColor: 'white', marginTop: 90, borderTopLeftRadius: 50, borderTopEndRadius: 50, paddingHorizontal: '10%', height: '80%' }}>
-
-
-        //         <View style={{ paddingTop: 50, }}>
-        //             <View style={LoginStyle.shadow}>
-        //                 <TextInput style={LoginStyle.txtField} textContentType={'emailAddress'} placeholder='Enter the User' value={username} onChangeText={(e) => setUserName(e)} />
-        //             </View>
-        //             <View style={LoginStyle.shadow}>
-        //                 <TextInput style={LoginStyle.txtField} textContentType={'emailAddress'} placeholder='Enter the Email' value={email} onChangeText={(e) => setEmail(e)} />
-        //             </View>
-        //             <View style={LoginStyle.shadow}>
-        //                 <TextInput style={LoginStyle.txtField} textContentType={'emailAddress'} placeholder='Enter the Password' value={password} onChangeText={(e) => setPassword(e)} />
-        //             </View>
-        //             <View style={LoginStyle.shadow}>
-        //                 <TextInput style={LoginStyle.txtField} textContentType={'password'} placeholder='Confirm Password' value={confirmPassword} onChangeText={(e) => setConfirmPassword(e)} />
-
-        //             </View>
-        //             <Button style={LoginStyle.btn} style2={{ color: 'white', fontSize: 17, }} text={"SignUp"} onPress={() => Signup()} />
-        //             {/* <TouchableOpacity style={LoginStyle.btn} onPress={() => Signup()}>
-        //                 <Text style={{ color: 'white', fontSize: 17, }}>SignUp </Text>
-        //             </TouchableOpacity> */}
-
-        //             <TouchableOpacity onPress={() => { navigation.navigate("Login") }} style={{ marginVertical: 15, flexDirection: 'row', marginTop: 20, alignSelf: 'center' }}>
-        //                 <Text>You Have Already Account </Text>
-        //                 <Text style={{ borderBottomColor: 'gray', borderBottomWidth: 1, }}>Login</Text>
-        //             </TouchableOpacity>
-        //         </View>
-        //     </View>
-        // </View>
-
     )
 }

@@ -18,8 +18,21 @@ import checkoutvarse4 from "../assets/checkoutvarse4.png"
 import save2 from "../assets/save2.png"
 import footer from "../assets/footer.png"
 import { CheckoutStyle } from "./Style/checkoutStyle"
-function Checkout() {
+import { useState } from "react"
+function Checkout({ navigation }) {
+    const [index, setIndex] = useState(1)
+    let adds = () => {
+        let num = index + 1
+        setIndex(num);
+        console.log(index);
 
+    }
+    let subs = () => {
+        let num = index - 1
+        setIndex(num);
+        console.log(index);
+
+    }
     return (
         <View>
             <View style={{ marginTop: 26, marginLeft: 26, marginRight: 36 }}>
@@ -27,7 +40,7 @@ function Checkout() {
                     <Image source={Logo2} style={{ width: "60%", height: "115%" }} />
                     <View style={CheckoutStyle.SearchAndMenu}>
                         <Image source={Union} style={{ marginRight: 30 }} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
                             <Image source={Menu} />
                         </TouchableOpacity>
                     </View>
@@ -39,14 +52,14 @@ function Checkout() {
                     <View>
                         <View style={{ flexDirection: "row", }}>
                             <Image source={checkoutvarse} />
-                            <View style={{ marginLeft: 5, marginTop: 10 }}>
+                            <View style={{ marginLeft: 0, marginTop: 10 }}>
                                 <Text style={CheckoutStyle.Name}>Watermelon Peperomia</Text>
                                 <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => adds()}>
                                         <Image source={add} />
                                     </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>1</Text>
-                                    <TouchableOpacity>
+                                    <Text style={CheckoutStyle.Number}>{index}</Text>
+                                    <TouchableOpacity onPress={() => subs()}>
                                         <Image source={sub} />
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ marginLeft: 36 }}>
@@ -68,11 +81,11 @@ function Checkout() {
                             <View style={{ marginLeft: 5, marginTop: 10 }}>
                                 <Text style={CheckoutStyle.Name}>Peperomia Obtusfolia</Text>
                                 <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => adds()}>
                                         <Image source={add} />
                                     </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>1</Text>
-                                    <TouchableOpacity>
+                                    <Text style={CheckoutStyle.Number}>{index}</Text>
+                                    <TouchableOpacity onPress={() => subs()}>
                                         <Image source={sub} />
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ marginLeft: 36 }}>
@@ -94,11 +107,11 @@ function Checkout() {
                             <View style={{ marginLeft: 5, marginTop: 10 }}>
                                 <Text style={CheckoutStyle.Name}>Cactus</Text>
                                 <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => adds()}>
                                         <Image source={add} />
                                     </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>1</Text>
-                                    <TouchableOpacity>
+                                    <Text style={CheckoutStyle.Number}>{index}</Text>
+                                    <TouchableOpacity onPress={() => subs()}>
                                         <Image source={sub} />
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ marginLeft: 36 }}>
@@ -150,7 +163,7 @@ function Checkout() {
                         <Text style={CheckoutStyle.save}>Saved for later</Text>
                         <Text style={CheckoutStyle.save}>6 items</Text>
                     </View>
-                    <View style={{marginBottom:80}}>
+                    <View style={{ marginBottom: 80 }}>
                         <View style={{ flexDirection: "row", marginBottom: 20, marginTop: 20 }}>
                             <Image source={checkoutvarse4} />
                             <View style={{ marginLeft: 5, marginTop: 10 }}>
@@ -178,14 +191,14 @@ function Checkout() {
                     </View>
                 </ScrollView>
             </View>
-            <View style={{ position: "absolute" ,bottom:25}}>
+            <TouchableOpacity style={{ position: "absolute", bottom: 25 }} onPress={() => navigation.navigate("Order")}>
                 <Image source={footer} resizeMode="cover" />
-                <View style={{position:"absolute",flexDirection:"row",justifyContent:"space-between",width:"80%",marginLeft:36,alignItems:"center",marginTop:17}}>
+                <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
                     <Text style={CheckoutStyle.checkout}>Checkout</Text>
                     <Text style={CheckoutStyle.checkout}>$1090</Text>
                 </View>
                 {/* </ImageBackground> */}
-            </View>
+            </TouchableOpacity>
         </View>
     )
 }

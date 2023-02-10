@@ -91,7 +91,7 @@ export default function Login({ navigation }) {
                 <Text style={LoginStyle.passwordText}>Password</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Password' pl style={LoginStyle.EmailInput} />
+                    <TextInput placeholder='Password' style={LoginStyle.EmailInput} />
                 </View>
                 <View>
                     <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>

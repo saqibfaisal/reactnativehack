@@ -89,7 +89,7 @@ function HomeScreen() {
             }} /> */}
             {/* <FlatList data={data} renderItem={({ item, index }) => {
                 return ( */}
-            <ScrollView >
+            <ScrollView showsVerticalScrollIndicator={false}>
 
                 <View style-={{ width: "100%", height: "100%" }}>
                     <ImageBackground source={bannerbg} style={{ width: "90%", height: "90%" }}>

@@ -168,5 +168,22 @@ export const FavoriteStyle = StyleSheet.create({
         // marginTop: 20,
         color: "#0D986A",
         
+    },
+    checkout: {
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 13,
+        lineHeight: 30,
+        color: "#FFFFFF",
+        marginLeft:23.28
+    },
+    checkouts: {
+        fontFamily: 'Poppins',
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: 18,
+        lineHeight: 30,
+        color: "#FFFFFF",
     }
 });

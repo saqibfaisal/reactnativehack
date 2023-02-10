@@ -5,6 +5,8 @@ import MyStack from './src/navigattion/navigation';
 import Singup from './src/authentication/screen/singup';
 import FlashMessage from 'react-native-flash-message';
 import { useRef } from "react"
+import Menu from './src/authenticated/Menu';
+import OrderDone from './src/authenticated/OrderDone';
 function App() {
   const myLocalFlashMessage = useRef('myLocalFlashMessage');
 
@@ -13,6 +15,7 @@ function App() {
   return (
     <NavigationContainer>
       <MyStack />
+      {/* <OrderDone /> */}
       <FlashMessage
         style={{
           // marginHorizontal: 30,
@@ -26,10 +29,6 @@ function App() {
         ref={myLocalFlashMessage}
       />
     </NavigationContainer>
-    // <View>
-    //   <Text>helllllllllllll</Text>
-    // </View>
-    // <Singup/>
   )
 }
 export default App

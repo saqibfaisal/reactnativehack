@@ -8,13 +8,11 @@ import Logo2 from "../../assets/Logo2.png"
 import Passowrdsssss from "../../assets/passowrdsssss.png"
 import Userrsss from "../../assets/Userrsss.png"
 export default function Signup({ navigation }) {
-    const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     let Signup = () => {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-        if (username == "" || email == "" || password == "" || confirmPassword == "") {
+        if (email == "" || password == "") {
             showMessage({
                 message: 'Please Fill the Input',
                 type: 'Danger',
@@ -33,53 +31,46 @@ export default function Signup({ navigation }) {
                 });
                 return <FlashMessage />
             }
-            if (password == confirmPassword) {
-                const myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                let initialData = {
-
-                    "username": username,
-                    "email": email.toLowerCase(),
-                    "password": password,
-                    "confirmpassword": confirmPassword,
-                    "type": "User",
-                }
-                const raw = JSON.stringify(
-                    initialData
-                );
-                const requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-                fetch("http://192.168.18.217:5000/api/singup", requestOptions)
-                    .then(response => response.json())
-                    .then(result => {
-                        // ToastAndroid.show("user successfully signup", 2000);
-                        setEmail("");
-                        setPassword("");
-                        setUserName("");
-                        setConfirmPassword("");
-                        console.log(result);
-                        showMessage({
-                            message: 'user successfully signup',
-                            type: 'success',
-                            duration: 2000,
-                            autoHide: true,
-                        });
-                        return <FlashMessage />
-
-
-                    })
-                    .catch(error => {
-                        setEmail("");
-                        setPassword("");
-                        setUserName("");
-                        setConfirmPassword("");
-                        console.log('error', error)
-                    });
+            // if (password == confirmPassword) {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            let initialData = {
+                "email": email.toLowerCase(),
+                "password": password,
+                "type": "User",
             }
+            const raw = JSON.stringify(
+                initialData
+            );
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch("http://192.168.18.217:5000/api/singup", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    // ToastAndroid.show("user successfully signup", 2000);
+                    setEmail("");
+                    setPassword("");
+                    console.log(result);
+                    showMessage({
+                        message: 'user successfully signup',
+                        type: 'success',
+                        duration: 2000,
+                        autoHide: true,
+                    });
+                    return <FlashMessage />
+
+
+                })
+                .catch(error => {
+                    setEmail("");
+                    setPassword("");
+                    console.log('error', error)
+                });
+            // }
         }
     }
     return (
@@ -97,12 +88,12 @@ export default function Signup({ navigation }) {
                 <Text style={LoginStyle.Email}>Username/ Email</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Userrsss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Username/ Email' style={LoginStyle.EmailInput} />
+                    <TextInput onChange={(e)=>setEmail(e)}value={email} placeholder='Email' style={LoginStyle.EmailInput} />
                 </View>
                 <Text style={LoginStyle.passwordText}>Password</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Password' pl style={LoginStyle.EmailInput} />
+                    <TextInput placeholder='Password' onChange={(e)=>setPassword(e)}value={password} style={LoginStyle.EmailInput} />
                 </View>
                 <View>
                     <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>

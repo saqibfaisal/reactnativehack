@@ -28,7 +28,16 @@ import AIScan from "../assets/AIScan.png"
 import footer from "../assets/footer.png"
 import footer2 from "../assets/footer2.png"
 import footer3 from "../assets/footer3.png"
-function Favorite({ navigation }) {
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { add } from "../redux/reducer/cartSlice"
+import { addFavourite } from "../redux/reducer/favouriteProdSlice"
+function Favorite({ navigation, route }) {
+    console.log(route.params.image);
+    const { name, category, image, overview, plant_bio, price, size } =
+        route.params;
+
+    const dispatch = useDispatch();
     const Images = [
         {
             Image: Vedio
@@ -62,6 +71,10 @@ function Favorite({ navigation }) {
             varse: favoritevarse
         }
     ]
+    let checkouts = () => {
+        dispatch(add(route.params))
+        navigation.navigate("Checkouts")
+    }
     return (
         <View>
             <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
@@ -78,25 +91,29 @@ function Favorite({ navigation }) {
                                 </View>
                             </View>
                             <View style={FavoriteStyle.MainView}>
-                                <Text style={FavoriteStyle.MAinText}>Air Purifier</Text>
+                                <Text style={FavoriteStyle.MAinText}>{category}</Text>
                                 <Image source={Foot} style={{ marginLeft: 27 }} />
                             </View>
                             <View style={{ marginTop: 11 }}>
                                 <Text style={FavoriteStyle.name}>
-                                    Watermelon Peperomia
+                                    {name}
                                 </Text>
                             </View>
                             <View style={{ marginTop: 24 }}>
                                 <Text style={FavoriteStyle.price}>Price</Text>
-                                <Text style={FavoriteStyle.number}>$350</Text>
+                                <Text style={FavoriteStyle.number}>${price}</Text>
                                 <Text style={FavoriteStyle.Size}>Size</Text>
-                                <Text style={FavoriteStyle.Height}>5” h</Text>
+                                <Text style={FavoriteStyle.Height}>{size}</Text>
                             </View>
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 34 }}>
-                                <Image source={Face} />
-                                <Image source={HeartGroup} style={{ marginLeft: 20 }} />
+                                <TouchableOpacity onPress={() => dispatch(add(route.params))}>
+                                    <Image source={Face} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => dispatch(addFavourite(plant))}>
+                                    <Image source={HeartGroup} style={{ marginLeft: 20 }} />
+                                </TouchableOpacity>
                             </View>
-                            <Image source={sage} style={{ width: "100%", height: "70%", position: "absolute", marginTop: 155, marginLeft: 70 }} />
+                            <Image source={{ uri: image }} style={{ width: "100%", height: "80%", position: "absolute", marginTop: 160, marginLeft: 70 }} />
                         </View>
                     </ImageBackground>
                 </ImageBackground>
@@ -108,21 +125,21 @@ function Favorite({ navigation }) {
                         <View style={{ flexDirection: "row" }}>
                             <Image source={Water} />
                             <View style={{ marginLeft: 14 }}>
-                                <Text style={FavoriteStyle.ML}>250ml</Text>
+                                <Text style={FavoriteStyle.ML}>{overview.water}</Text>
                                 <Text style={FavoriteStyle.water}>Water</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: "row", marginLeft: 30, }}>
                             <Image source={Sun} />
                             <View style={{ marginLeft: 14 }}>
-                                <Text style={FavoriteStyle.ML}>35-40%</Text>
+                                <Text style={FavoriteStyle.ML}>{overview.Light ?? ''}</Text>
                                 <Text style={FavoriteStyle.water}>Light</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: "row", marginLeft: 30, }}>
                             <Image source={dot} />
                             <View style={{ marginLeft: 14 }}>
-                                <Text style={FavoriteStyle.ML}>250gm</Text>
+                                <Text style={FavoriteStyle.ML}>{overview.Fertilizer ?? ''}</Text>
                                 <Text style={FavoriteStyle.water}>Fertilizer</Text>
                             </View>
                         </View>
@@ -131,7 +148,7 @@ function Favorite({ navigation }) {
                         <Text style={FavoriteStyle.Overview}>Plant Bio</Text>
                     </View>
                     <View>
-                        <Text style={FavoriteStyle.Plant}>No green thumb required to keep our artificial watermelon peperomia plant looking lively and lush anywhere you place it.</Text>
+                        <Text style={FavoriteStyle.Plant}>{plant_bio}</Text>
                     </View>
                     <FlatList horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled data={Images} renderItem={({ item, index }) => {
                         return (
@@ -186,16 +203,19 @@ function Favorite({ navigation }) {
                     </ImageBackground>
                 </View>
             </ScrollView>
-            <TouchableOpacity onPress={()=>navigation.navigate("Checkout")} style={{ position: "absolute", bottom: 0 }}>
+            {/* {cartItems.length && totalPrice ? */}
+            <TouchableOpacity onPress={() => checkouts()} style={{ position: "absolute", bottom: 0 }}>
                 <Image source={footer} resizeMode="cover" />
                 <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         <Image source={footer3} />
-                        <Text style={FavoriteStyle.checkout}>View 3 items</Text>
+                        <Text style={FavoriteStyle.checkout}>View 1 items </Text>
                     </View>
-                    <Text style={FavoriteStyle.checkouts}>$1000</Text>
+                    <Text style={FavoriteStyle.checkouts}>${price}</Text>
                 </View>
             </TouchableOpacity>
+            {/* : null
+            } */}
         </View>
     )
 }

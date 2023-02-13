@@ -15,6 +15,8 @@ import Favorite from '../authenticated/Fovarite';
 import Checkout from '../authenticated/Checkout';
 import Menu from '../authenticated/Menu';
 import OrderDone from '../authenticated/OrderDone';
+import detail from '../authenticated/detail';
+import Profile from '../authenticated/Style/Profile';
 const Stack = createStackNavigator();
 
 export default function MyStack() {
@@ -27,10 +29,12 @@ export default function MyStack() {
       <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }}
       />
       <Stack.Screen name="HomeScreen" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Favorite" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Checkout" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Menu" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="detail" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Checkouts" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Order" component={OrderDone} options={{ headerShown: false }} />
+      <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
+      <Stack.Screen name="Favorite" component={Favorite} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={TabNavigator} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -45,59 +49,39 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={Home} />
-              {/* <Icon
-                    name={focused ? 'restaurant-menu' : 'restaurant'}
-                    size={25}
-                    color={focused ? '#FA4A0C' : 'black'}
-                  /> */}
             </>
           ),
         }}
       />
       <Tab.Screen
-        name="Favorite"
-        component={Favorite}
+        name="detail"
+        component={detail}
         options={{
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={favoritess} />
-              {/* <Icon
-                    name={focused ? 'restaurant-menu' : 'restaurant'}
-                    size={25}
-                    color={focused ? '#FA4A0C' : 'black'}
-                  /> */}
             </>
           ),
         }}
       />
       <Tab.Screen
-        name="Checkout"
+        name="Checkouts"
         component={Checkout}
         options={{
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={WhiteList} />
-              {/* <Icon
-                    name={focused ? 'restaurant-menu' : 'restaurant'}
-                    size={25}
-                    color={focused ? '#FA4A0C' : 'black'}
-                  /> */}
             </>
           ),
         }}
       />
       <Tab.Screen
-        name="Menu"
-        component={Menu}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <>
               <Image source={man} />
-              {/* <Icon
-                    name={focused ? 'restaurant-menu' : 'restaurant'}
-                    size={25}
-                    color={focused ? '#FA4A0C' : 'black'}
-                  /> */}
             </>
           ),
         }}

@@ -120,8 +120,8 @@ export const FavoriteStyle = StyleSheet.create({
         fontFamily: 'Poppins',
         fontStyle: "normal",
         fontWeight: "600",
-        fontsize: 14,
-        lineheight: 21,
+        fontSize: 14,
+        lineHeight: 21,
         color: "#002140",
         width: 50
     },
@@ -129,8 +129,8 @@ export const FavoriteStyle = StyleSheet.create({
         fontFamily: 'Philosopher',
         fontStyle: "normal",
         fontWeight: "700",
-        fontsize: 20,
-        lineheight: 21,
+        fontSize: 20,
+        lineHeight: 21,
         color: "#002140",
     },
     explain: {

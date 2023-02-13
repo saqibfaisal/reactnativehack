@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import { LoginStyle } from "./styles/LoginStyle"
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Button from '../../component/button';
@@ -7,12 +7,12 @@ import Back from "../../assets/Back.png"
 import Logo2 from "../../assets/Logo2.png"
 import Passowrdsssss from "../../assets/passowrdsssss.png"
 import Userrsss from "../../assets/Userrsss.png"
+import { BACKEND_URL } from '../../../config';
 export default function Login({ navigation }) {
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let Login = () => {
-        // console.log(email,"email");
-        // console.log(password,"password");
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (email == "" || password == "") {
             showMessage({
@@ -50,9 +50,11 @@ export default function Login({ navigation }) {
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("http://192.168.3.109:5000/api/login", requestOptions)
+            setLoading(true)
+            fetch(`${BACKEND_URL}/api/login`, requestOptions)
                 .then(response => response.text())
                 .then(result => {
+                    setLoading(false)
                     setEmail("");
                     setPassword("");
                     console.log(result)
@@ -66,6 +68,7 @@ export default function Login({ navigation }) {
                     return <FlashMessage />
                 })
                 .catch(error => {
+                    setLoading(false)
                     setEmail("");
                     setPassword("");
                     console.log('error', error)
@@ -84,7 +87,7 @@ export default function Login({ navigation }) {
                     memulai belajar sekarang</Text>
             </View>
             <View style={{ marginTop: 47 }}>
-                <Text style={LoginStyle.Email}>Username/ Email</Text>
+                <Text style={LoginStyle.Email}>Email</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Userrsss} style={{ marginRight: 5 }} />
                     <TextInput onChangeText={(e) => setEmail(e)} value={email} placeholder='Username/ Email' style={LoginStyle.EmailInput} />
@@ -94,12 +97,15 @@ export default function Login({ navigation }) {
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
                     <TextInput placeholder='Password' onChangeText={(e) => setPassword(e)} value={password} style={LoginStyle.EmailInput} />
                 </View>
-                <TouchableOpacity onPress={()=>navigation.navigate("Signup")}>
-                    <Text style={LoginStyle.ForgetPasssword}>SingUP</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                    <Text style={LoginStyle.ForgetPasssword}>Signup</Text>
                 </TouchableOpacity>
             </View>
             <View>
-                <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"Login"} onPress={() => Login()} />
+                {loading == true ?
+                    <ActivityIndicator />
+                    : <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"Login"} onPress={() => Login()} />
+                }
             </View>
         </View>
     )

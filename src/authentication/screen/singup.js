@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Image, ImageBackground, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import { LoginStyle } from "./styles/LoginStyle"
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Button from '../../component/button';
@@ -7,7 +7,9 @@ import Back from "../../assets/Back.png"
 import Logo2 from "../../assets/Logo2.png"
 import Passowrdsssss from "../../assets/passowrdsssss.png"
 import Userrsss from "../../assets/Userrsss.png"
+import { BACKEND_URL } from '../../../config';
 export default function Signup({ navigation }) {
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let Signup = () => {
@@ -48,9 +50,11 @@ export default function Signup({ navigation }) {
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("http://192.168.3.109:5000/api/singup", requestOptions)
+            setLoading(true)
+            fetch(`${BACKEND_URL}/api/singup`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
+                    setLoading(false)
                     // ToastAndroid.show("user successfully signup", 2000);
                     setEmail("");
                     setPassword("");
@@ -67,6 +71,7 @@ export default function Signup({ navigation }) {
 
                 })
                 .catch(error => {
+                    setLoading(false)
                     setEmail("");
                     setPassword("");
                     console.log('error', error)
@@ -89,19 +94,23 @@ export default function Signup({ navigation }) {
                 <Text style={LoginStyle.Email}>Username/ Email</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Userrsss} style={{ marginRight: 5 }} />
-                    <TextInput onChangeText={(e)=>setEmail(e)}value={email} placeholder='Email' style={LoginStyle.EmailInput} />
+                    <TextInput onChangeText={(e) => setEmail(e)} value={email} placeholder='Email' style={LoginStyle.EmailInput} />
                 </View>
                 <Text style={LoginStyle.passwordText}>Password</Text>
                 <View style={LoginStyle.password}>
                     <Image source={Passowrdsssss} style={{ marginRight: 5 }} />
-                    <TextInput placeholder='Password' onChangeText={(e)=>setPassword(e)}value={password} style={LoginStyle.EmailInput} />
+                    <TextInput placeholder='Password' onChangeText={(e) => setPassword(e)} value={password} style={LoginStyle.EmailInput} />
                 </View>
-                <View>
-                    <Text style={LoginStyle.ForgetPasssword}>Forget Passowrd</Text>
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                    <Text style={LoginStyle.ForgetPasssword}>Login</Text>
+                </TouchableOpacity>
             </View>
             <View>
-                <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"SignUp"} onPress={() => Signup()} />
+                {loading == true ?
+                    <ActivityIndicator />
+                    :
+                    <Button style={LoginStyle.btn} style2={LoginStyle.BtnText} text={"SignUp"} onPress={() => Signup()} />
+                }
             </View>
         </View>
     )

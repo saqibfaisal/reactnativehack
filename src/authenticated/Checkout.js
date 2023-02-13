@@ -3,7 +3,7 @@ import Logo2 from "../assets/Logo2.png"
 import Union from "../assets/Union.png"
 import Menu from "../assets/Menu.png"
 import checkoutvarse from "../assets/checkoutvarse.png"
-import add from "../assets/add.png"
+import adds from "../assets/adds.png"
 import sub from "../assets/sub.png"
 import deletes from "../assets/delete.png"
 import save from "../assets/save.png"
@@ -18,21 +18,46 @@ import checkoutvarse4 from "../assets/checkoutvarse4.png"
 import save2 from "../assets/save2.png"
 import footer from "../assets/footer.png"
 import { CheckoutStyle } from "./Style/checkoutStyle"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { add, remove, removeAllInstance } from "../redux/reducer/cartSlice"
 function Checkout({ navigation }) {
-    const [index, setIndex] = useState(1)
-    let adds = () => {
-        let num = index + 1
-        setIndex(num);
-        console.log(index);
+    // const [couponStatus, setCouponStatus] = useState(false);
+    const cartItems = useSelector(state => state.cart);
+    const dispatch = useDispatch();
+    const [totalPrice, setTotalPrice] = useState(0);
+    const favouriteProducts = useSelector(state => state.favourites);
 
-    }
-    let subs = () => {
-        let num = index - 1
-        setIndex(num);
-        console.log(index);
+    console.log(favouriteProducts);
 
-    }
+    // const couponChecker = couponCode => {
+    //     if (couponCode === 'plantify') {
+    //         setCouponStatus(true);
+    //         setTotalPrice(totalPrice - 20);
+    //     } else if (couponCode === 'greeb') {
+    //         setCouponStatus(true);
+    //         setTotalPrice(1);
+    //         80 == 0;
+    //     } else {
+    //         setCouponStatus(false);
+    //         80 == 80;
+    //         setTotalPrice(
+    //             cartItems
+    //                 .map(x => x.price)
+    //                 .reduce((partialSum, a) => partialSum + a, 0)
+    //                 .toFixed(0),
+    //         );
+    //     }
+    // };
+
+    useEffect(() => {
+        setTotalPrice(
+            cartItems
+                .map(x => x.price)
+                .reduce((partialSum, a) => partialSum + a, 0)
+                .toFixed(0),
+        );
+    }, [cartItems]);
     return (
         <View>
             <View style={{ marginTop: 26, marginLeft: 26, marginRight: 36 }}>
@@ -49,84 +74,51 @@ function Checkout({ navigation }) {
                     <View style={{ marginTop: 50 }}>
                         <Text style={CheckoutStyle.Bag}>Your Bag</Text>
                     </View>
-                    <View>
-                        <View style={{ flexDirection: "row", }}>
-                            <Image source={checkoutvarse} />
-                            <View style={{ marginLeft: 0, marginTop: 10 }}>
-                                <Text style={CheckoutStyle.Name}>Watermelon Peperomia</Text>
-                                <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity onPress={() => adds()}>
-                                        <Image source={add} />
-                                    </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>{index}</Text>
-                                    <TouchableOpacity onPress={() => subs()}>
-                                        <Image source={sub} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={{ marginLeft: 36 }}>
-                                        <Image source={deletes} />
-                                    </TouchableOpacity>
+
+                    {cartItems && cartItems.length > 0 ? (
+                        [...new Set(cartItems)].map((x, i) => (
+                            <View key={i}>
+                                <View style={{ flexDirection: "row", marginBottom: 20 }}>
+
+                                    <Image style={{ width: 80, height: 100 }} source={{
+                                        uri: x.image
+                                    }} />
+                                    <View style={{ marginLeft: 10, marginTop: 10 }}>
+                                        <Text style={CheckoutStyle.Name}>{x.name}</Text>
+                                        <View style={{ flexDirection: "row" }}>
+                                            <TouchableOpacity onPress={() => dispatch(add(x))}>
+                                                <Image source={adds} />
+                                            </TouchableOpacity>
+                                            <Text style={CheckoutStyle.Number}> {cartItems.length
+                                                ? cartItems.filter(item => item._id === x._id).length
+                                                : null}</Text>
+                                            <TouchableOpacity onPress={() => dispatch(remove(x))}>
+                                                <Image source={sub} />
+                                            </TouchableOpacity>
+                                            <TouchableOpacity onPress={() => dispatch(removeAllInstance(x))} style={{ marginLeft: 36 }}>
+                                                <Image source={deletes} />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                    <View style={{ marginTop: 15, marginLeft: 21, flexDirection: "row" }}>
+                                        <TouchableOpacity>
+                                            <Image source={save} />
+                                        </TouchableOpacity>
+                                        <Text style={CheckoutStyle.price}>{x.price}</Text>
+                                    </View>
                                 </View>
                             </View>
-                            <View style={{ marginTop: 15, marginLeft: 21, flexDirection: "row" }}>
-                                <TouchableOpacity>
-                                    <Image source={save} />
-                                </TouchableOpacity>
-                                <Text style={CheckoutStyle.price}>₹350</Text>
-                            </View>
+                        ))
+                    ) : (
+                        <View
+                            style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: 700,
+                            }}>
+                            <Text style={{ fontSize: 20, color: 'grey' }}>EMPTY</Text>
                         </View>
-                    </View>
-                    <View>
-                        <View style={{ flexDirection: "row", }}>
-                            <Image source={checkoutvarse2} />
-                            <View style={{ marginLeft: 5, marginTop: 10 }}>
-                                <Text style={CheckoutStyle.Name}>Peperomia Obtusfolia</Text>
-                                <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity onPress={() => adds()}>
-                                        <Image source={add} />
-                                    </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>{index}</Text>
-                                    <TouchableOpacity onPress={() => subs()}>
-                                        <Image source={sub} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={{ marginLeft: 36 }}>
-                                        <Image source={deletes} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <View style={{ marginTop: 15, marginLeft: 21, flexDirection: "row" }}>
-                                <TouchableOpacity>
-                                    <Image source={save} />
-                                </TouchableOpacity>
-                                <Text style={CheckoutStyle.price}>$400</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View>
-                        <View style={{ flexDirection: "row", }}>
-                            <Image source={checkoutvarse3} />
-                            <View style={{ marginLeft: 5, marginTop: 10 }}>
-                                <Text style={CheckoutStyle.Name}>Cactus</Text>
-                                <View style={{ flexDirection: "row" }}>
-                                    <TouchableOpacity onPress={() => adds()}>
-                                        <Image source={add} />
-                                    </TouchableOpacity>
-                                    <Text style={CheckoutStyle.Number}>{index}</Text>
-                                    <TouchableOpacity onPress={() => subs()}>
-                                        <Image source={sub} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={{ marginLeft: 36 }}>
-                                        <Image source={deletes} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <View style={{ marginTop: 15, marginLeft: 21, flexDirection: "row" }}>
-                                <TouchableOpacity>
-                                    <Image source={save} />
-                                </TouchableOpacity>
-                                <Text style={CheckoutStyle.price}>$260</Text>
-                            </View>
-                        </View>
-                    </View>
+                    )}
                     <View>
                         <View style={{ flexDirection: "row" }}>
                             <Image source={delivery} />
@@ -157,7 +149,7 @@ function Checkout({ navigation }) {
                     </View>
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 30 }}>
                         <Text style={CheckoutStyle.Total}>Total</Text>
-                        <Text style={CheckoutStyle.Total}>$1090</Text>
+                        <Text style={CheckoutStyle.Total}>${parseInt(totalPrice) + parseInt(80)}</Text>
                     </View>
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 50 }}>
                         <Text style={CheckoutStyle.save}>Saved for later</Text>
@@ -170,7 +162,7 @@ function Checkout({ navigation }) {
                                 <Text style={CheckoutStyle.Name}>Large Snake Zylanica</Text>
                                 <View style={{ flexDirection: "row" }}>
                                     <TouchableOpacity>
-                                        <Image source={add} />
+                                        <Image source={adds} />
                                     </TouchableOpacity>
                                     <Text style={CheckoutStyle.Number}>1</Text>
                                     <TouchableOpacity>
@@ -195,7 +187,7 @@ function Checkout({ navigation }) {
                 <Image source={footer} resizeMode="cover" />
                 <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
                     <Text style={CheckoutStyle.checkout}>Checkout</Text>
-                    <Text style={CheckoutStyle.checkout}>$1090</Text>
+                    <Text style={CheckoutStyle.checkout}>${parseInt(totalPrice) ? parseInt(totalPrice) + parseInt(80) : 0}</Text>
                 </View>
                 {/* </ImageBackground> */}
             </TouchableOpacity>

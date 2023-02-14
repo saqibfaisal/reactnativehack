@@ -108,16 +108,16 @@ function HomeScreen({ navigation }) {
                     <TouchableOpacity>
                         <Text style={HomeScreenStyle.ScrollText}>Top Pick</Text>
                     </TouchableOpacity >
-                    <TouchableOpacity style={HomeScreenStyle.Scroll}>
+                    <TouchableOpacity style={HomeScreenStyle.Scroll} disabled>
                         <Text style={HomeScreenStyle.ScrollText1}>Indoor</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={HomeScreenStyle.Scroll}>
+                    <TouchableOpacity style={HomeScreenStyle.Scroll} disabled>
                         <Text style={HomeScreenStyle.ScrollText1}>Outdoor</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={HomeScreenStyle.Scroll}>
+                    <TouchableOpacity style={HomeScreenStyle.Scroll} disabled>
                         <Text style={HomeScreenStyle.ScrollText1}>Seeds</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={HomeScreenStyle.Scroll}>
+                    <TouchableOpacity style={HomeScreenStyle.Scroll} disabled>
                         <Text style={HomeScreenStyle.ScrollText1}>Planters</Text>
                     </TouchableOpacity>
                 </View>

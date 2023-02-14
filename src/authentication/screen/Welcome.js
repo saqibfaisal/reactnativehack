@@ -10,11 +10,11 @@ function Welcomes({ navigation }) {
         <View>
             {/* <ScrollView> */}
 
-                <ImageBackground source={BgImage} style={{ height: "75%", width: "100%" }}>
-                    <ImageBackground source={Vector} style={{ height: "90%", width: "100%" }}>
+                <ImageBackground source={BgImage} resizeMode="contain" style={{  height:400,width: "100%" }}>
+                    <ImageBackground source={Vector} style={{  height:400,width: "100%" }}>
                         <View style={Welcome.MainContainer}>
-                            <Image source={Logo} style={{ height: "51%", width: "60%", marginTop: 20 }} />
-                            <Image source={Plantify} style={{ height: "10%", width: "75%", marginTop: 35 }} />
+                            <Image source={Logo} resizeMode="contain" style={{ height: 200, width: 300, marginTop: 20 }} />
+                            <Image source={Plantify} resizeMode="contain" style={{ height: 50, width: "75%", marginTop: 35 }} />
                         </View>
                     </ImageBackground>
                 </ImageBackground>

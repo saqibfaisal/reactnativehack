@@ -21,6 +21,7 @@ import { CheckoutStyle } from "./Style/checkoutStyle"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { add, remove, removeAllInstance } from "../redux/reducer/cartSlice"
+import FlashMessage, { showMessage } from "react-native-flash-message"
 function Checkout({ navigation }) {
     // const [couponStatus, setCouponStatus] = useState(false);
     const cartItems = useSelector(state => state.cart);
@@ -30,26 +31,6 @@ function Checkout({ navigation }) {
 
     console.log(favouriteProducts);
 
-    // const couponChecker = couponCode => {
-    //     if (couponCode === 'plantify') {
-    //         setCouponStatus(true);
-    //         setTotalPrice(totalPrice - 20);
-    //     } else if (couponCode === 'greeb') {
-    //         setCouponStatus(true);
-    //         setTotalPrice(1);
-    //         80 == 0;
-    //     } else {
-    //         setCouponStatus(false);
-    //         80 == 80;
-    //         setTotalPrice(
-    //             cartItems
-    //                 .map(x => x.price)
-    //                 .reduce((partialSum, a) => partialSum + a, 0)
-    //                 .toFixed(0),
-    //         );
-    //     }
-    // };
-
     useEffect(() => {
         setTotalPrice(
             cartItems
@@ -58,6 +39,19 @@ function Checkout({ navigation }) {
                 .toFixed(0),
         );
     }, [cartItems]);
+    let doneKarro = () => {
+        if (parseInt(totalPrice) == 0) {
+            showMessage({
+                message: 'Your Checkout list is Empty',
+                type: 'Danger',
+                duration: 2000,
+                autoHide: true,
+            });
+            return <FlashMessage />
+        } else {
+            navigation.navigate("Order")
+        }
+    }
     return (
         <View>
             <View style={{ marginTop: 26, marginLeft: 26, marginRight: 36 }}>
@@ -183,7 +177,7 @@ function Checkout({ navigation }) {
                     </View>
                 </ScrollView>
             </View>
-            <TouchableOpacity style={{ position: "absolute", bottom: 25 }} onPress={() => navigation.navigate("Order")}>
+            <TouchableOpacity style={{ position: "absolute", bottom: 25 }} onPress={() => doneKarro()}>
                 <Image source={footer} resizeMode="cover" />
                 <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
                     <Text style={CheckoutStyle.checkout}>Checkout</Text>

@@ -6,7 +6,7 @@ export const Welcome = StyleSheet.create({
     MainContainer:{
         justifyContent:"center", 
         alignItems:"center",
-        marginTop:15
+        marginTop:25
     },
     Heading:{
         fontFamily:'Philosopher',
@@ -20,7 +20,7 @@ export const Welcome = StyleSheet.create({
     mainView:{
         marginLeft:24,
         marginRight:24,
-
+        marginTop:32,
     },
     Texts:{
         fontFamily:'Inter',
@@ -29,8 +29,8 @@ export const Welcome = StyleSheet.create({
         lineHeight:17,
         fontStyle:"normal",
         color:"#0D986A",
-        marginTop:25,
-        marginBottom:25
+        marginTop:30,
+        marginBottom:27
     },
     btn:{
         justifyContent:"center",

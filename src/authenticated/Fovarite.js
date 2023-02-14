@@ -71,10 +71,10 @@ function Favorite({ navigation, route }) {
             varse: favoritevarse
         }
     ]
-    let checkouts = () => {
-        dispatch(add(route.params))
-        navigation.navigate("Checkouts")
-    }
+    // let checkoutss = () => {
+    //     dispatch(add(route.params))
+        // navigation.navigate("Checkouts")
+    // }
     return (
         <View>
             <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
@@ -204,7 +204,7 @@ function Favorite({ navigation, route }) {
                 </View>
             </ScrollView>
             {/* {cartItems.length && totalPrice ? */}
-            <TouchableOpacity onPress={() => checkouts()} style={{ position: "absolute", bottom: 0 }}>
+            <TouchableOpacity disabled style={{ position: "absolute", bottom: 0 }}>
                 <Image source={footer} resizeMode="cover" />
                 <View style={{ position: "absolute", flexDirection: "row", justifyContent: "space-between", width: "80%", marginLeft: 36, alignItems: "center", marginTop: 17 }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
